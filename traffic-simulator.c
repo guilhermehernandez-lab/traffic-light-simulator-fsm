@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
+#include <windows.h>
 
 typedef enum {
     RED,
@@ -7,27 +8,41 @@ typedef enum {
     YELLOW
 } State;
 
+void printLight(State state) {
+    system("cls"); // limpa o ecrã no Windows
+
+    printf("Traffic Light Simulator\n\n");
+
+    if (state == RED) {
+        printf("[🔴]\n[   ]\n[   ]\n");
+    }
+    else if (state == GREEN) {
+        printf("[   ]\n[🟢]\n[   ]\n");
+    }
+    else if (state == YELLOW) {
+        printf("[   ]\n[   ]\n[🟡]\n");
+    }
+}
+
 int main() {
     State current = RED;
 
     while (1) {
-        switch (current) {
+        printLight(current);
 
+        switch (current) {
             case RED:
-                printf("\nRED LIGHT\n");
-                sleep(5);
+                Sleep(5000); // milissegundos
                 current = GREEN;
                 break;
 
             case GREEN:
-                printf("\nGREEN LIGHT\n");
-                sleep(5);
+                Sleep(5000);
                 current = YELLOW;
                 break;
 
             case YELLOW:
-                printf("\nYELLOW LIGHT\n");
-                sleep(2);
+                Sleep(2000);
                 current = RED;
                 break;
         }
