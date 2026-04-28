@@ -4,7 +4,7 @@
 This project simulates a traffic light system using a finite state machine (FSM) in C.
 
 ## Features
-- Three states: RED, GREEN AND YELLOW
+- Three states: RED, GREEN and YELLOW
 - Time-based transitions
 - Continuous simulation loop
 
