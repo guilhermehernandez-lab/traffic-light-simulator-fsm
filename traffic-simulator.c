@@ -16,7 +16,7 @@ typedef enum {
 } State;
 
 void printLight(State state) {
-    system("cls"); // funciona no Windows (se não, ignora)
+    system("cls");
 
     printf("Traffic Light Simulator\n\n");
 
