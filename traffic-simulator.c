@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+    #define SLEEP(ms) Sleep(ms)
+#else
+    #include <unistd.h>
+    #define SLEEP(ms) usleep(ms * 1000)
+#endif
 
 typedef enum {
     RED,
@@ -9,7 +16,7 @@ typedef enum {
 } State;
 
 void printLight(State state) {
-    system("cls"); // limpa o ecrã no Windows
+    system("cls"); // funciona no Windows (se não, ignora)
 
     printf("Traffic Light Simulator\n\n");
 
@@ -19,7 +26,7 @@ void printLight(State state) {
     else if (state == GREEN) {
         printf("[   ]\n[🟢]\n[   ]\n");
     }
-    else if (state == YELLOW) {
+    else {
         printf("[   ]\n[   ]\n[🟡]\n");
     }
 }
@@ -32,17 +39,17 @@ int main() {
 
         switch (current) {
             case RED:
-                Sleep(5000); // milissegundos
+                SLEEP(5000);
                 current = GREEN;
                 break;
 
             case GREEN:
-                Sleep(5000);
+                SLEEP(5000);
                 current = YELLOW;
                 break;
 
             case YELLOW:
-                Sleep(2000);
+                SLEEP(2000);
                 current = RED;
                 break;
         }
