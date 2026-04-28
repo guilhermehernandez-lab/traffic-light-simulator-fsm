@@ -19,13 +19,11 @@ typedef enum {
 RED,
 GREEN,
 YELLOW,
-PEDESTRIAN // novo estado
+PEDESTRIAN
 } State;
 
-// Flag global para o botão de peão
 volatile int pedestrianRequest = 0;
 
-// ---- Thread que escuta o teclado ----
 #ifdef _WIN32
 DWORD WINAPI inputThread(LPVOID arg) {
 #else
@@ -70,7 +68,6 @@ printf("\n⏳ Pedestrian request pending...\n");
 int main() {
 State current = RED;
 
-// Inicia a thread de input
 #ifdef _WIN32
 HANDLE t;
 t = CreateThread(NULL, 0, inputThread, NULL, 0, NULL);
@@ -104,7 +101,7 @@ current = RED;
 break;
 
 case PEDESTRIAN:
-// Vermelho para peões atravessarem
+  
 SLEEP(4000);
 current = RED;
 break;
