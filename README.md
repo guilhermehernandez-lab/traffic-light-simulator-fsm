@@ -10,4 +10,5 @@ This project simulates a traffic light system using a finite state machine (FSM)
 
 ## How to Run
 gcc traffic-simulator.c -o traffic
+
 ./traffic
